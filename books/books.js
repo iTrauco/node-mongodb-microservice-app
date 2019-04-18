@@ -1,6 +1,10 @@
 // Load express
 const express = require('express');
 const app = express();
+// Kb SRC 001 v4 @ 07:32; approx
+const bodyParser = require('body-parser');
+// Kb SRC 001 v4 @ 08:30; approx
+app.use(bodyParser.json());
 //load mongoose
 const mongoose = require('mongoose');
 
@@ -15,7 +19,14 @@ const PORT = 4545;
 app.get('/', (req, res) => {
     res.send("This is the main endpoint!")
 })
-//
+
+// Kb SRC 001 v4 @ 01:50; approx 
+app.post('/book', (req, res) => {
+        console.log(req.body);
+    // Kb SRC 001 v5 @ 00:52; approx
+    res.send("00:D");
+});
+
 app.listen(PORT, () => {
     console.log(`Books service now listening on port ${PORT}.`);
 })
