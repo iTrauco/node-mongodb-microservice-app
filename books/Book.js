@@ -1,7 +1,7 @@
-// Kb SRC 001 v4 @ 03:00; approx
+// Kb SRC 002 v4 @ 03:00; approx
 const mongoose = require('mongoose');
 
-// Kb SRC 001 v4 @ 03:48; approx
+// Kb SRC 002 v4 @ 03:48; approx
 mongoose.model('Book', {
     // title, author, numberPages, publisher
     title: {
@@ -20,5 +20,4 @@ mongoose.model('Book', {
         type: String, 
         require: false
     },
-
 });
