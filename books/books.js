@@ -6,7 +6,7 @@ const app = express();
 const bodyParser = require('body-parser');
 // Kb SRC 002 v4 @ 08:30; approx
 app.use(bodyParser.json());
-//load mongoose
+// load mongoose
 const mongoose = require('mongoose');
 // =================================================
 // PORT CONFIG
@@ -54,8 +54,6 @@ const book = new Book(newBook)
     // console.log(req.body);
     // Kb SRC 002 v5 @ 00:52; approx
     // res.send("00:D");
-    // =========================================
-    // TDD END
 // =================================================
 // GET DB BOOKS ROUTE | Kb SRC 002 v7 @ 00:45; approx
 app.get('/books', (req, res) => {
@@ -81,7 +79,7 @@ app.get('/book/:id', (req, res) => {
     // ============================================
     // DOES BOOK DATA EXIST? | Kb SRC 002 v7 @ 10:37; approx
     if(book){
-        // BOOK DATA
+        // BOOK DATA SOURCE CHECK
         res.json(book)
     }else{
         res.sendStatus(404);
@@ -97,10 +95,19 @@ app.get('/book/:id', (req, res) => {
 // DELETE BOOK IN DB | Kb SRC 002 v8 @ 00:38; approx
 app.delete('/book/:id', (req, res) => {
    // Kb SRC 002 v8 @ 02:00; approx
-   
+    Book.findOneAndDelete(req.params.id).then(() => {
+        res.send("Successfully deleted book from DB!")
+    }).catch(err => {
+        if(err){
+            throw err;
+        }
+    })
 })
+// CLI Error: (node:31341) DeprecationWarning: collection.findAndModify is deprecated. Use findOneAndUpdate, findOneAndReplace or findOneAndDelete instead.
+// Issue res achieved by changing 'findOneAndRemove' to 'findOneAndDelete'
 // =================================================
 app.listen(PORT, () => {
     console.log(`Books service now listening on port ${PORT}.`);
-})      // End
+})   
 // =================================================
+// END
