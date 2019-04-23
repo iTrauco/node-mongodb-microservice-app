@@ -62,11 +62,7 @@ const book = new Book(newBook)
 //
 //
 app.get('/books', (req, res) => {
-    //TDD
-    // =====================================
-    // console.log(req.body);
-    // console.log(res.send("00:D"));
-    // TDD | Remote Support Above
+ 
     Book.find().then((books) => {
     // console.log(books) 
         res.json(books)
@@ -77,13 +73,15 @@ app.get('/books', (req, res) => {
     })
 });
 // =================================================
-// GET ONE BOOK BY ID | Kb SRC 002 v7 @ 04:27; approx
+// TDD | Remote Start GET ONE BOOK BY ID | Kb SRC 002 v7 @ 04:27; approx
 app.get('/book/:id', (req, res) => {
     // TDD =========================================
     Book.findById(req.params.id).then((book) => {
+    // TDD | Remote Support
     // res.send(req.params.id)
     // ============================================
     // DOES BOOK DATA EXIST? | Kb SRC 002 v7 @ 10:37; approx
+
     if(book){
         // BOOK DATA
         res.json(book)
@@ -96,7 +94,8 @@ app.get('/book/:id', (req, res) => {
             throw err;
         }
     })
-})
+    //
+}) // TDD | Remote Uncomment
 // =================================================
 // DELETE BOOK IN DB | Kb SRC 002 v8 @ 00:38; approx
 app.delete('/book/:id', (req, res) => {
@@ -105,6 +104,6 @@ app.delete('/book/:id', (req, res) => {
 })
 // =================================================
 app.listen(PORT, () => {
-    console.log(`Books service now listening on port ${PORT}.`);
+    console.log(`Books Service now listening on port ${PORT}.`);
 })      // End
 // =================================================
