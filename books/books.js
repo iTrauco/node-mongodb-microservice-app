@@ -56,11 +56,15 @@ const book = new Book(newBook)
     // res.send("00:D");
 // =================================================
 // GET DB BOOKS ROUTE | Kb SRC 002 v7 @ 00:45; approx
+//TDD | Remote Support
+//
+//
 app.get('/books', (req, res) => {
     //TDD
     // =====================================
     // console.log(req.body);
     // console.log(res.send("00:D"));
+    // TDD | Remote Support Above
     Book.find().then((books) => {
     // console.log(books) 
         res.json(books)
